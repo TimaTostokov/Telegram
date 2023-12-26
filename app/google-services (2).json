@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "204637498189",
+    "firebase_url": "https://telegram-ddaba-default-rtdb.firebaseio.com",
+    "project_id": "telegram-ddaba",
+    "storage_bucket": "telegram-ddaba.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:204637498189:android:df36426dce1b4bafa1e504",
+        "android_client_info": {
+          "package_name": "com.example.my.telegram"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-WhIN6Z7pAw_N16nA5HVZMArODSFqdKY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
