@@ -9,6 +9,7 @@ import com.example.my.telegram.utils.AppTextWatcher
 import com.example.my.telegram.utils.CHILD_ID
 import com.example.my.telegram.utils.CHILD_PHONE
 import com.example.my.telegram.utils.CHILD_USERNAME
+import com.example.my.telegram.utils.NODE_PHONES
 import com.example.my.telegram.utils.NODE_USERS
 import com.example.my.telegram.utils.REF_DATABASE_ROOT
 import com.example.my.telegram.utils.replaceActivity
@@ -42,24 +43,23 @@ class EnterCodeFragment(private val phoneNumber: String, val id: String) :
         auth.signInWithCredential(credential)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    val uid = auth.currentUser?.uid.orEmpty()
-                    val dateMap = mapOf(
-                        CHILD_ID to uid,
-                        CHILD_PHONE to phoneNumber,
-                        CHILD_USERNAME to uid
-                    )
-                    REF_DATABASE_ROOT.child(NODE_USERS).child(uid).updateChildren(dateMap)
-                        .addOnCompleteListener { task2 ->
-                            if (task2.isSuccessful) {
-                                showToast("Welcome")
-                                (activity as RegisterActivity).replaceActivity(MainActivity())
-                            } else {
-                                showToast(task2.exception?.message.orEmpty())
-                            }
+                    val uid = auth.currentUser?.uid.toString()
+                    val dateMap = mutableMapOf<String, Any>()
+                    CHILD_ID to uid
+                    CHILD_PHONE to phoneNumber
+                    CHILD_USERNAME to uid
+
+                    REF_DATABASE_ROOT.child(NODE_PHONES).child(phoneNumber).setValue(uid)
+                        .addOnFailureListener { showToast(it.message.toString()) }
+                        .addOnSuccessListener {
+                            REF_DATABASE_ROOT.child(NODE_USERS).child(uid).updateChildren(dateMap)
+                                .addOnSuccessListener {
+                                    showToast("Добро пожаловать!")
+                                    (activity as RegisterActivity).replaceActivity(MainActivity())
+                                }
+                                .addOnFailureListener { showToast(it.message.toString()) }
                         }
-                } else {
-                    showToast(task.exception?.message.orEmpty())
-                }
+                } else showToast(task.exception?.message.toString())
             }
     }
 
