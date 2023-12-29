@@ -4,15 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragments.EnterPhoneNumberFragment">
+    tools:context=".ui.screens.register.EnterPhoneNumberFragment">
 
     <EditText
         android:id="@+id/register_input_phone_number"
         style="@style/editText"
         android:hint="@string/register_phone_hint"
-        android:importantForAutofill="no"
         app:layout_constraintEnd_toEndOf="parent"
-        android:gravity="center"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -20,9 +18,8 @@
         android:id="@+id/register_btn_next"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/horizontal_margin"
+        android:layout_margin="@dimen/app_margin"
         android:backgroundTint="@color/colorPrimary"
-        android:contentDescription="@string/todo"
         android:src="@drawable/ic_btn_next"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

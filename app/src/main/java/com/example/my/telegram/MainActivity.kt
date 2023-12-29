@@ -5,18 +5,17 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
-import com.example.my.telegram.activities.RegisterActivity
+import com.example.my.telegram.database.AUTH
+import com.example.my.telegram.database.initFirebase
+import com.example.my.telegram.database.initUser
 import com.example.my.telegram.databinding.ActivityMainBinding
-import com.example.my.telegram.ui.fragments.ChatsFragment
+import com.example.my.telegram.ui.screens.register.EnterPhoneNumberFragment
 import com.example.my.telegram.ui.objects.AppDrawer
+import com.example.my.telegram.ui.screens.mainlist.MainListFragment
 import com.example.my.telegram.utils.APP_ACTIVITY
-import com.example.my.telegram.utils.AUTH
 import com.example.my.telegram.utils.AppStates
 import com.example.my.telegram.utils.READ_CONTACTS
 import com.example.my.telegram.utils.initContacts
-import com.example.my.telegram.utils.initFirebase
-import com.example.my.telegram.utils.initUser
-import com.example.my.telegram.utils.replaceActivity
 import com.example.my.telegram.utils.replaceFragment
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -27,8 +26,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var mBinding: ActivityMainBinding
     lateinit var mAppDrawer: AppDrawer
     lateinit var mToolbar: Toolbar
-
     override fun onCreate(savedInstanceState: Bundle?) {
+        /* Функция запускается один раз, при создании активити */
         super.onCreate(savedInstanceState)
         mBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(mBinding.root)
@@ -44,16 +43,18 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initFunc() {
+        /* Функция инициализирует функциональность приложения */
+        setSupportActionBar(mToolbar)
         if (AUTH.currentUser != null) {
-            setSupportActionBar(mToolbar)
             mAppDrawer.create()
-            replaceFragment(ChatsFragment(), false)
+            replaceFragment(MainListFragment(), false)
         } else {
-            replaceActivity(RegisterActivity())
+            replaceFragment(EnterPhoneNumberFragment(), false)
         }
     }
 
     private fun initFields() {
+        /* Функция инициализирует переменные */
         mToolbar = mBinding.mainToolbar
         mAppDrawer = AppDrawer()
     }

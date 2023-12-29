@@ -4,14 +4,13 @@ import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.view.View
 import android.widget.ImageView
-import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
+import com.example.my.telegram.ui.screens.group.AddContactsFragment
 import com.example.my.telegram.R
-import com.example.my.telegram.ui.fragments.ContactsFragment
-import com.example.my.telegram.ui.fragments.SettingsFragment
+import com.example.my.telegram.database.USER
+import com.example.my.telegram.ui.screens.contacts.ContactsFragment
+import com.example.my.telegram.ui.screens.settings.SettingsFragment
 import com.example.my.telegram.utils.APP_ACTIVITY
-import com.example.my.telegram.utils.USER
 import com.example.my.telegram.utils.downloadAndSetImage
 import com.example.my.telegram.utils.replaceFragment
 import com.mikepenz.materialdrawer.AccountHeader
@@ -25,7 +24,9 @@ import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem
 import com.mikepenz.materialdrawer.util.AbstractDrawerImageLoader
 import com.mikepenz.materialdrawer.util.DrawerImageLoader
 
-class AppDrawer() {
+/* Обьект реализующий боковое меню Navigation Drawer */
+
+class AppDrawer {
 
     private lateinit var mDrawer: Drawer
     private lateinit var mHeader: AccountHeader
@@ -33,6 +34,7 @@ class AppDrawer() {
     private lateinit var mCurrentProfile: ProfileDrawerItem
 
     fun create() {
+        /* Создания бокового меню */
         initLoader()
         createHeader()
         createDrawer()
@@ -40,6 +42,7 @@ class AppDrawer() {
     }
 
     fun disableDrawer() {
+        /* Отключение выдвигающего меню */
         mDrawer.actionBarDrawerToggle?.isDrawerIndicatorEnabled = false
         APP_ACTIVITY.supportActionBar?.setDisplayHomeAsUpEnabled(true)
         mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
@@ -49,6 +52,7 @@ class AppDrawer() {
     }
 
     fun enableDrawer() {
+        /* Включение выдвигающего меню */
         APP_ACTIVITY.supportActionBar?.setDisplayHomeAsUpEnabled(false)
         mDrawer.actionBarDrawerToggle?.isDrawerIndicatorEnabled = true
         mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
@@ -58,6 +62,7 @@ class AppDrawer() {
     }
 
     private fun createDrawer() {
+        /* Создание дравера */
         mDrawer = DrawerBuilder()
             .withActivity(APP_ACTIVITY)
             .withToolbar(APP_ACTIVITY.mToolbar)
@@ -121,16 +126,19 @@ class AppDrawer() {
                     return false
                 }
             }).build()
+
     }
 
     private fun clickToItem(position: Int) {
         when (position) {
-            7 -> APP_ACTIVITY.replaceFragment(SettingsFragment())
-            4 -> APP_ACTIVITY.replaceFragment(ContactsFragment())
+            1 -> replaceFragment(AddContactsFragment())
+            7 -> replaceFragment(SettingsFragment())
+            4 -> replaceFragment(ContactsFragment())
         }
     }
 
     private fun createHeader() {
+        /* Создание хедера*/
         mCurrentProfile = ProfileDrawerItem()
             .withName(USER.fullname)
             .withEmail(USER.phone)
@@ -145,15 +153,18 @@ class AppDrawer() {
     }
 
     fun updateHeader() {
+        /* Обновления хедера */
         mCurrentProfile
             .withName(USER.fullname)
             .withEmail(USER.phone)
             .withIcon(USER.photoUrl)
 
         mHeader.updateProfile(mCurrentProfile)
+
     }
 
     private fun initLoader() {
+        /* Инициализация лоадера для загрузки картинок в хедер */
         DrawerImageLoader.init(object : AbstractDrawerImageLoader() {
             override fun set(imageView: ImageView, uri: Uri, placeholder: Drawable) {
                 imageView.downloadAndSetImage(uri.toString())

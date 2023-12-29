@@ -5,7 +5,10 @@
     <color name="colorAccent">#FFFFFF</color>
     <color name="colorAccentDark">#D1CDCD</color>
     <color name="colorBlack">#000000</color>
+    <color name="colorGreen">#89D17D</color>
+    <color name="colorGreenDark">#4E8345</color>
     <color name="colorGrey">#837E7E</color>
+    <color name="colorBlueWish">#6BB0C5</color>
 
     <!-- Material DEFAULT colors -->
     <color name="material_drawer_primary">#2196F3</color>
@@ -28,4 +31,5 @@
     <color name="material_drawer_selected_text">#2196F3</color>
     <color name="material_drawer_header_selection_text">@color/colorAccent</color>
     <color name="material_drawer_header_selection_subtext">@color/colorAccentDark</color>
+
 </resources>

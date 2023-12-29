@@ -4,30 +4,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragments.ChangeNameFragment">
+    tools:context=".ui.screens.settings.ChangeNameFragment">
 
     <EditText
         android:id="@+id/settings_input_name"
         style="@style/editText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/inputName"
+        android:hint="@string/settings_hint_input_name"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:importantForAutofill="no" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/settings_input_surname"
         style="@style/editText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/inputSurName"
+        android:hint="@string/settings_hint_input_surname"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/settings_input_name"
-        tools:ignore="Autofill" />
+        app:layout_constraintTop_toBottomOf="@+id/settings_input_name" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

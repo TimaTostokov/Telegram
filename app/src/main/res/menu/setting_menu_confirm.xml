@@ -2,9 +2,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/setting_confirm_change"
+        android:id="@+id/settings_confirm_change"
         android:icon="@drawable/ic_confirm_change"
         android:title=""
         app:showAsAction="ifRoom">
+
     </item>
 </menu>
