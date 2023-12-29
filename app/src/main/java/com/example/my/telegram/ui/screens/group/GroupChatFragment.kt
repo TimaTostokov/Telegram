@@ -9,7 +9,6 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.example.my.telegram.ui.screens.mainlist.MainListFragment
 import com.example.my.telegram.R
 import com.example.my.telegram.database.NODE_GROUPS
 import com.example.my.telegram.database.NODE_MESSAGES
@@ -27,15 +26,18 @@ import com.example.my.telegram.models.CommonModel
 import com.example.my.telegram.models.User
 import com.example.my.telegram.ui.messagerecyclerview.views.AppViewFactory
 import com.example.my.telegram.ui.screens.base.BaseFragment
+import com.example.my.telegram.ui.screens.mainlist.MainListFragment
 import com.example.my.telegram.utils.APP_ACTIVITY
 import com.example.my.telegram.utils.AppChildEventListener
 import com.example.my.telegram.utils.AppTextWatcher
 import com.example.my.telegram.utils.AppValueEventListener
 import com.example.my.telegram.utils.AppVoiceRecorder
 import com.example.my.telegram.utils.PICK_FILE_REQUEST_CODE
+import com.example.my.telegram.utils.RECORD_AUDIO
 import com.example.my.telegram.utils.TYPE_MESSAGE_FILE
 import com.example.my.telegram.utils.TYPE_MESSAGE_IMAGE
 import com.example.my.telegram.utils.TYPE_MESSAGE_VOICE
+import com.example.my.telegram.utils.checkPermission
 import com.example.my.telegram.utils.getFilenameFromUri
 import com.example.my.telegram.utils.replaceFragment
 import com.example.my.telegram.utils.showToast
